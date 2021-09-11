@@ -59,7 +59,11 @@ const initiate = () => {
 };
 
 mongoose
-  .connect(MONGODB_URI)
+  .connect(process.env.MONGODB_URI, {
+    useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+  })
   .then(() => {
     debug(`Database connected to URI "${MONGODB_URI}"`);
     initiate();
